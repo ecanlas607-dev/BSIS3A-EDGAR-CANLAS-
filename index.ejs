@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8">
+  <title>My Project</title>
+  <link rel="stylesheet" href="/style/main.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Gumagana na ang project! 🎉</h1>
+    <p>Ito ang simpleng Node.js + Express app na may file upload feature.</p>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+      <input type="file" name="myfile" required>
+      <button type="submit">I-upload</button>
+    </form>
+
+    <h2>Mga na-upload na files:</h2>
+    <ul class="file-list">
+      <% if (files.length === 0) { %>
+        <li>Wala pang na-upload.</li>
+      <% } else { %>
+        <% files.forEach(function(file) { %>
+          <li><a href="/upload/<%= file %>" target="_blank"><%= file %></a></li>
+        <% }) %>
+      <% } %>
+    </ul>
+  </div>
+</body>
+</html>
