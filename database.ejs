@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database — KAHON</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style/main.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">KAHON</span>
+        <span class="brand-sub">SQL database viewer</span>
+      </div>
+      <div class="who">
+        <span class="who-label">may-ari</span>
+        <span class="who-name"><%= currentUser.username %></span>
+        <a href="/logout" class="stamp-btn">LOGOUT →</a>
+      </div>
+    </header>
+
+    <nav class="page-nav">
+      <a href="/" class="page-nav-link">← Bumalik sa Shop Dashboard</a>
+    </nav>
+
+    <main class="board">
+
+      <section class="manifest">
+        <div class="manifest-head">
+          <span class="tag-no">SQL DATABASE — 5 CONNECTED TABLES</span>
+          <span class="corner-stamp">SQL<br>★ LIVE ★</span>
+        </div>
+        <h1 class="crate-title">Database ng Negosyo</h1>
+        <p class="crate-sub">Ito ang datos na direktang galing sa <code>data.sqlite</code>, na nabuo mula sa <code>schema.sql</code>. Naka-konekta ito sa parehong login system — ang session mo ay kailangan bago makita ang pahinang ito.</p>
+
+        <div class="file-tabs">
+          <% tables.forEach(function(t) { %>
+            <a href="/database?table=<%= t %>"
+               class="file-tab <%= t === selectedTable ? 'file-tab--active' : '' %>">
+              <%= t %>
+            </a>
+          <% }) %>
+        </div>
+
+        <% if (rows.length > 0) { %>
+          <div class="ledger-scroll">
+            <table class="ledger-table">
+              <thead>
+                <tr>
+                  <% headers.forEach(function(h) { %>
+                    <th><%= h %></th>
+                  <% }) %>
+                </tr>
+              </thead>
+              <tbody>
+                <% rows.forEach(function(row) { %>
+                  <tr>
+                    <% headers.forEach(function(h) { %>
+                      <td>
+                        <% if (h === 'Category' && categoryIcons[row[h]]) { %>
+                          <span class="cat-icon"><%= categoryIcons[row[h]] %></span>
+                        <% } %>
+                        <%= row[h] %>
+                      </td>
+                    <% }) %>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+          <p class="ledger-count"><%= rows.length %> row<%= rows.length !== 1 ? 's' : '' %> sa <%= selectedTable %></p>
+        <% } else { %>
+          <div class="empty-crate">
+            <p class="empty-title">Walang laman ang table na ito.</p>
+          </div>
+        <% } %>
+      </section>
+
+      <section class="manifest">
+        <div class="manifest-head">
+          <span class="tag-no">SAMPLE JOIN QUERY (Orders + Customers + Payments)</span>
+        </div>
+        <p class="crate-sub">Halimbawa ng pag-uugnay ng tatlong tables gamit ang SQL JOIN — patunay na konektado talaga ang mga tables sa isa't isa.</p>
+
+        <% if (joinPreview.length > 0) { %>
+          <div class="ledger-scroll">
+            <table class="ledger-table">
+              <thead>
+                <tr>
+                  <% Object.keys(joinPreview[0]).forEach(function(h) { %>
+                    <th><%= h %></th>
+                  <% }) %>
+                </tr>
+              </thead>
+              <tbody>
+                <% joinPreview.forEach(function(row) { %>
+                  <tr>
+                    <% Object.keys(row).forEach(function(h) { %>
+                      <td><%= row[h] %></td>
+                    <% }) %>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } %>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>

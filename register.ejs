@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="/style/main.css">
+</head>
+<body>
+  <div class="container auth-container">
+    <h1>Gumawa ng Account</h1>
+
+    <% if (error) { %>
+      <p class="error-msg"><%= error %></p>
+    <% } %>
+
+    <form action="/register" method="POST" class="auth-form">
+      <label>Username</label>
+      <input type="text" name="username" required>
+
+      <label>Password</label>
+      <input type="password" name="password" required>
+
+      <label>Ulitin ang Password</label>
+      <input type="password" name="confirmPassword" required>
+
+      <button type="submit">Mag-register</button>
+    </form>
+
+    <p class="switch-link">May account ka na? <a href="/login">Mag-login dito</a></p>
+  </div>
+</body>
+</html>

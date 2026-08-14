@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="/style/main.css">
+</head>
+<body>
+  <div class="container auth-container">
+    <h1>Login</h1>
+
+    <% if (error) { %>
+      <p class="error-msg"><%= error %></p>
+    <% } %>
+
+    <form action="/login" method="POST" class="auth-form">
+      <label>Username</label>
+      <input type="text" name="username" required>
+
+      <label>Password</label>
+      <input type="password" name="password" required>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <p class="switch-link">Wala ka pang account? <a href="/register">Mag-register dito</a></p>
+  </div>
+</body>
+</html>
