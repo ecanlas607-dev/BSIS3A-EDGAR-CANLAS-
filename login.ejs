@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/style/main.css">
+</head>
+<body>
+  <div class="container auth-container">
+    <h1>Login</h1>
+
+    <% if (error) { %>
+      <p class="error-msg" role="alert"><%= error %></p>
+    <% } %>
+
+    <form action="/login" method="POST" class="auth-form" autocomplete="on">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Enter your username"
+        required
+        autofocus
+      >
+
+      <label for="password">Password</label>
+      <div class="password-wrapper">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        >
+        <button type="button" id="togglePassword" class="toggle-btn" aria-label="Show password">
+          👁
+        </button>
+      </div>
+
+      <div class="form-options">
+        <label class="remember-me">
+          <input type="checkbox" name="remember" id="remember">
+          Remember me
+        </label>
+        <a href="/forgot-password" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-submit">Login</button>
+    </form>
+
+    <p class="switch-link">Wala ka pang account? <a href="/register">Mag-register dito</a></p>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+
+    toggleBtn.addEventListener('click', () => {
+      const isPassword = passwordInput.type === 'password';
+      passwordInput.type = isPassword ? 'text' : 'password';
+      toggleBtn.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+      toggleBtn.textContent = isPassword ? '🙈' : '👁';
+    });
+  </script>
+</body>
+</html>

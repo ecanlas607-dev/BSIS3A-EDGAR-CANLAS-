@@ -1,0 +1,15 @@
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
+body { background: #f4f4f4; margin: 0; padding: 30px; }
+.container { max-width: 900px; margin: auto; background: #fff; padding: 25px 30px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+h1 { color: #d62828; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+th { background: #f8b400; }
+.btn-add, .btn-submit { background: #d62828; color: #fff; padding: 8px 14px; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer; }
+.btn-edit { color: #1a73e8; margin-right: 10px; }
+.btn-delete { color: #d62828; }
+.btn-cancel { margin-left: 10px; color: #555; text-decoration: none; }
+.error-msg { color: #d62828; background: #fdecea; padding: 8px 12px; border-radius: 4px; }
+.success-msg { color: #1e7e34; background: #e6f4ea; padding: 8px 12px; border-radius: 4px; }
+.form label { display: block; margin-top: 12px; font-weight: bold; }
+.form input, .form select { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px; }
